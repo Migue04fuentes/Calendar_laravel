@@ -14,10 +14,14 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.0.3/main.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.0.3/index.global.min.js" type="text/javascript"></script>
-
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel='stylesheet' type='text/css' href='{{ asset('css/fullcalendar.min.css') }}' />
+    <link rel='stylesheet' type='text/css' href='{{ asset('css/fullcalendar.css') }}' />
     <!-- Scripts -->
+    <script type="text/javascript">
+        var baseURL = {!! json_encode(url('/')) !!}
+    </script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
@@ -79,12 +83,17 @@
                 </div>
             </div>
         </nav>
-
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script type='text/javascript' src='{{ asset('js/full_calendar/moment.min.js') }}'></script>
+        <script type='text/javascript' src='{{ asset('js/full_calendar/fullcalendar.min.js') }}'></script>
+        <script type='text/javascript' src='{{ asset('js/full_calendar/es.js') }}'></script>
+        <script src="{{ asset('js/agenda.js') }}"></script>
         <main class="py-4">
             @yield('content')
         </main>
     </div>
-    <script src="{{ asset('js/agenda.js') }} defer"></script>
 </body>
 
 </html>

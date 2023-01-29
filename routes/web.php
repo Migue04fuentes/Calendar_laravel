@@ -20,6 +20,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/evento', [App\Http\Controllers\EventoController::class, 'index']);
+Route::get('/evento/mostrar', [App\Http\Controllers\EventoController::class, 'show']);
+Route::post('/evento/agregar', [App\Http\Controllers\EventoController::class, 'store']);
+Route::post('/evento/editar/{id}', [App\Http\Controllers\EventoController::class, 'edit']);
+Route::post('/evento/update/{evento}', [App\Http\Controllers\EventoController::class, 'update']);
+Route::post('/evento/delete/{id}', [App\Http\Controllers\EventoController::class, 'destroy']);
+
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
