@@ -12,11 +12,12 @@ class Evento extends Model
     static $rules = [
         'title'=>'required',
         'description'=>'required',
+        'id_doctor'=>'required',
         'start'=>'required',
         'end'=>'required'
     ],
     $messages = [
         'title.required'=> 'Falta rellenar el campo title',
     ];
-    protected $fillable = ['title', 'description', 'start', 'end'];
+    protected $fillable = ['title', 'description','id_doctor', 'start', 'end'];
 }

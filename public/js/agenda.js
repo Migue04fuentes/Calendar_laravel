@@ -100,13 +100,14 @@ $(document).ready(function () {
     function enviarDatos(url) {
         const newurl = baseURL + url;
         const datos = new FormData(formulario);
-        console.log(datos);
+        console.log(formulario.id_doctor.value);
 
         axios
             .post(newurl, datos)
             .then((respuesta) => {
                 $("#calendar").fullCalendar("refetchEvents");
                 $("#evento").modal("hide");
+                console.log(respuesta);
             })
             .catch((error) => {
                 if (error.response) {
