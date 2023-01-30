@@ -14,6 +14,9 @@ class Evento extends Model
         'description'=>'required',
         'start'=>'required',
         'end'=>'required'
+    ],
+    $messages = [
+        'title.required'=> 'Falta rellenar el campo title',
     ];
     protected $fillable = ['title', 'description', 'start', 'end'];
 }

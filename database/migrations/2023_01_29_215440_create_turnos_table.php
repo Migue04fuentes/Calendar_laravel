@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('eventos', function (Blueprint $table) {
+        Schema::create('turnos', function (Blueprint $table) {
             $table->id();
-
-            $table->string('title', 255);
-            $table->string('description', 255);
             $table->integer('id_doctor');
             $table->dateTime('start');
             $table->dateTime('end');
-
+            $table->integer('cupos');
+            $table->integer('intervalos');
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('eventos');
+        Schema::dropIfExists('turnos');
     }
 };

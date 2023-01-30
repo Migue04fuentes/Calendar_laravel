@@ -1,30 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        Calendario.
         <div id="calendar"></div>
-        <div class="modal fade" id="modal-event" tabindex="-1" role="dialog" aria-labelledby="modal-eventLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="event-title"></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="event-description"></div>
-                        <div id="event-start"></div>
-                        <div id="event-end"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelada</button>
-                        <button type="button" class="btn btn-primary">Realizada</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="evento" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
@@ -44,11 +21,6 @@
                                 <label for="start">Fecha:</label>
                                 <input type="datetime-local" class="form-control col-md-8" name="start" id="start"
                                     placeholder="Fecha">
-                            </div>
-                            <div class="form-group col-auto">
-                                <label for="horainicial">Hora:</label>
-                                <input type="text" class="form-control col-md-6" name="hora" id="hora"
-                                    placeholder="Hora">
                             </div>
                             <div class="form-group col-auto">
                                 <label for="end">Fecha-end:</label>

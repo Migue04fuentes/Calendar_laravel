@@ -1,5 +1,3 @@
-
-
 function addZero(i) {
     if (i < 10) {
         i = "0" + i;
@@ -45,7 +43,6 @@ $(document).ready(function () {
         slotLabelInterval: "01:00:00",
         hiddenDays: [0],
 
-
         //Click para agregar cita
         dayClick: function (date, jsEvent, view) {
             formulario.reset();
@@ -69,29 +66,24 @@ $(document).ready(function () {
                 let horainicial = hora + ":" + min;
                 document.getElementById("start").value = date.format();
                 document.getElementById("end").value = date.format();
-                document.getElementById("hora").value = horainicial;
             } else {
                 alert("No se pueden crear eventos en el pasado.");
             }
         },
         //click en cita asignada
         eventClick: function (calEvent, jsEvent, view) {
-            $("#event-title").text(calEvent.title);
-            $("#event-description").html(calEvent.description);
-            $("#event-start").html(calEvent.start._i);
-            $("#event-end").html(calEvent.end);
-            axios.post(baseURL+"/evento/editar/"+calEvent.id).
-            then((respuesta)=>{
-                formulario.title.value = respuesta.data.title;
-                formulario.description.value = respuesta.data.description;
-                formulario.start.value = respuesta.data.start;
-                formulario.end.value = respuesta.data.end;
-                id = respuesta.data.id;
-                $("#evento").modal('show');
-            })
-            .catch((error)=>{
 
-            })
+            axios
+                .post("http://localhost/agenda/public/evento/editar/" + calEvent.id)
+                .then((respuesta) => {
+                    formulario.title.value = respuesta.data.title;
+                    formulario.description.value = respuesta.data.description;
+                    formulario.start.value = respuesta.data.start;
+                    formulario.end.value = respuesta.data.end;
+                    id = respuesta.data.id;
+                    $("#evento").modal("show");
+                })
+                .catch((error) => {});
         },
     });
     // Guardar datos
@@ -99,22 +91,21 @@ $(document).ready(function () {
         enviarDatos("/evento/agregar");
     });
     document.getElementById("btnEditar").addEventListener("click", () => {
-        enviarDatos("/evento/update/"+id);
+        enviarDatos("/evento/update/" + id);
     });
     document.getElementById("btnDelete").addEventListener("click", () => {
-        enviarDatos("/evento/delete/"+id);
+        enviarDatos("/evento/delete/" + id);
     });
 
-    function enviarDatos(url){
-
-        const newurl= baseURL+url;
+    function enviarDatos(url) {
+        const newurl = baseURL + url;
         const datos = new FormData(formulario);
         console.log(datos);
 
         axios
             .post(newurl, datos)
             .then((respuesta) => {
-                $('#calendar').fullCalendar('refetchEvents');
+                $("#calendar").fullCalendar("refetchEvents");
                 $("#evento").modal("hide");
             })
             .catch((error) => {
