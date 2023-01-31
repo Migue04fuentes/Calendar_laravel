@@ -1,4 +1,6 @@
 @extends('layouts.app')
+<style>
+</style>
 @section('content')
     <div class="container">
         <div id="calendar"></div>
@@ -30,8 +32,8 @@
                         </div>
                         <div class="form-group" hidden>
                             <label for="id_doctor" class="col-form-label">Doctor:</label>
-                            <input type="text" class="form-control col-sm-8" name="id_doctor" id="id_doctor" value="1"
-                                placeholder="Doctor">
+                            <input type="text" class="form-control col-sm-8" name="id_doctor" id="id_doctor"
+                                value="1" placeholder="Doctor">
                         </div>
                         <div class="form-group">
                             <label for="title" class="col-form-label">Doctor:</label>

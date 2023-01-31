@@ -42,6 +42,17 @@ $(document).ready(function () {
         slotDuration: "00:15:00",
         slotLabelInterval: "01:00:00",
         hiddenDays: [0],
+        selectable: true,
+        eventConstraint:{
+            start: '00:01', // a start time (10am in this example)
+            end: '12:00', // an end time (6pm in this example)
+        },
+        eventConstraint: [
+            {
+                start: "11:00",
+                end: "12:00"
+            }
+        ],
 
         //Click para agregar cita
         dayClick: function (date, jsEvent, view) {
@@ -72,9 +83,11 @@ $(document).ready(function () {
         },
         //click en cita asignada
         eventClick: function (calEvent, jsEvent, view) {
-
             axios
-                .post("http://localhost/agenda/public/evento/editar/" + calEvent.id)
+                .post(
+                    "http://localhost/agenda/public/evento/editar/" +
+                        calEvent.id
+                )
                 .then((respuesta) => {
                     formulario.title.value = respuesta.data.title;
                     formulario.description.value = respuesta.data.description;

@@ -37,16 +37,17 @@ class EventoController extends Controller
     public function store(Request $request)
     {
         request()->validate(Evento::$rules);
-        $doctor  = $request->{'id_doctor'};
+        /* $doctor  = $request->{'id_doctor'};
         $fecha  = $request->{'start'};
         $sql = "select * from eventos where id_doctor=".$doctor." and start='".$fecha."'";
-        $buscar = DB::select($sql); 
+        $buscar = DB::select($sql);
         if($buscar){
             return response("Existe");
         }else{
             return response("No Existe");
-        }
-        // $evento = Evento::create($request->all());
+        } */
+        $evento = Evento::create($request->all());
+        return response()->json($evento);
     }
 
     /**
