@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evento;
+use App\Models\Turnos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -37,17 +38,24 @@ class EventoController extends Controller
     public function store(Request $request)
     {
         request()->validate(Evento::$rules);
-        /* $doctor  = $request->{'id_doctor'};
-        $fecha  = $request->{'start'};
-        $sql = "select * from eventos where id_doctor=".$doctor." and start='".$fecha."'";
+        $doctor  = $request->{'id_doctor'};
+        $sql = "select cupos from turnos where id_doctor=".$doctor;
+        $buscar = DB::select($sql);
+        if($buscar == 4){
+            echo 'Esto si funciona';
+        }else{
+            echo gettype($buscar);
+        }
+        /* $fecha  = $request->{'start'};
+        $sql = "select * from eventos where id=".$doctor." and start='".$fecha."'";
         $buscar = DB::select($sql);
         if($buscar){
             return response("Existe");
         }else{
             return response("No Existe");
         } */
-        $evento = Evento::create($request->all());
-        return response()->json($evento);
+        /* $evento = Evento::create($request->all());
+        return response()->json($evento); */
     }
 
     /**

@@ -1,3 +1,5 @@
+
+
 function addZero(i) {
     if (i < 10) {
         i = "0" + i;
@@ -24,6 +26,9 @@ dd = addZero(dd);
 mm = addZero(mm);
 var id;
 $(document).ready(function () {
+    // VARIABLES
+    let fecha_start = document.getElementById('start');
+    let fecha_end = document.getElementById('end');
     let formulario = document.querySelector("form");
     $("#calendar").fullCalendar({
         header: {
@@ -42,8 +47,10 @@ $(document).ready(function () {
         slotDuration: "00:15:00",
         slotLabelInterval: "01:00:00",
         hiddenDays: [0],
+        slotEventOverlap: false,
+        selectOverlap: false,
         selectable: true,
-        eventConstraint:{
+        eventConstraint: {
             start: '00:01', // a start time (10am in this example)
             end: '12:00', // an end time (6pm in this example)
         },
@@ -75,8 +82,9 @@ $(document).ready(function () {
                     min = "0" + min;
                 }
                 let horainicial = hora + ":" + min;
-                document.getElementById("start").value = date.format();
-                document.getElementById("end").value = date.format();
+                fecha_start.value = check;
+                let mint = 15;
+                fecha_end.value = moment(check).add(mint,'m').format('YYYY-MM-DDThh:mm:ss');
             } else {
                 alert("No se pueden crear eventos en el pasado.");
             }
@@ -86,7 +94,7 @@ $(document).ready(function () {
             axios
                 .post(
                     "http://localhost/agenda/public/evento/editar/" +
-                        calEvent.id
+                    calEvent.id
                 )
                 .then((respuesta) => {
                     formulario.title.value = respuesta.data.title;
@@ -96,7 +104,7 @@ $(document).ready(function () {
                     id = respuesta.data.id;
                     $("#evento").modal("show");
                 })
-                .catch((error) => {});
+                .catch((error) => { });
         },
     });
     // Guardar datos

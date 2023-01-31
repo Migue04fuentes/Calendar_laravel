@@ -49,7 +49,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" id="btnDelete">Eliminar</button>
-                    <button type="button" class="btn btn-primary" id="btnEditar">Editar</button>
+                    <button type="button" class="btn btn-primary" id="btnEditar">Actualizar</button>
                     <button type="button" class="btn btn-success" id="btnGuardar">Guardar</button>
                 </div>
             </div>
