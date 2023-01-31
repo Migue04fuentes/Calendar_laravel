@@ -50,10 +50,6 @@ $(document).ready(function () {
         slotEventOverlap: false,
         selectOverlap: false,
         selectable: true,
-        eventConstraint: {
-            start: '00:01', // a start time (10am in this example)
-            end: '12:00', // an end time (6pm in this example)
-        },
         eventConstraint: [
             {
                 start: "11:00",

@@ -38,14 +38,16 @@ class EventoController extends Controller
     public function store(Request $request)
     {
         request()->validate(Evento::$rules);
-        $doctor  = $request->{'id_doctor'};
-        $sql = "select cupos from turnos where id_doctor=".$doctor;
+        /* $doctor  = $request->{'id_doctor'};
+        $sql = mysqli_query($db,"select cupos from turnos where id_doctor=".$doctor);
         $buscar = DB::select($sql);
-        if($buscar == 4){
-            echo 'Esto si funciona';
+        $row= mysqli_fetch_assoc($sql);
+        $cupos = 4;
+        if($cupos == $row['cupos']){
+            echo 'igual';
         }else{
-            echo gettype($buscar);
-        }
+            echo 'desigual';
+        } */
         /* $fecha  = $request->{'start'};
         $sql = "select * from eventos where id=".$doctor." and start='".$fecha."'";
         $buscar = DB::select($sql);
@@ -54,8 +56,8 @@ class EventoController extends Controller
         }else{
             return response("No Existe");
         } */
-        /* $evento = Evento::create($request->all());
-        return response()->json($evento); */
+        $evento = Evento::create($request->all());
+        return response()->json($evento);
     }
 
     /**
