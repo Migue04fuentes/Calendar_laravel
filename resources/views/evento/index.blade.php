@@ -21,12 +21,12 @@
                         <div class="row g-3">
                             <div class="form-group col-auto">
                                 <label for="start">Fecha:</label>
-                                <input type="datetime-local" class="form-control col-md-8" name="start" id="start"
+                                <input type="datetime-local" class="form-control col-md-10" name="start" id="start"
                                     placeholder="Fecha">
                             </div>
                             <div class="form-group col-auto">
                                 <label for="end">Fecha-end:</label>
-                                <input type="datetime-local" class="form-control col-md-8" name="end" id="end"
+                                <input type="datetime-local" class="form-control col-md-10" name="end" id="end"
                                     placeholder="Fecha">
                             </div>
                         </div>

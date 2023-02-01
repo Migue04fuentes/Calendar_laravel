@@ -47,9 +47,10 @@ $(document).ready(function () {
         slotDuration: "00:15:00",
         slotLabelInterval: "01:00:00",
         hiddenDays: [0],
+        eventLimit: true,
         slotEventOverlap: false,
         selectOverlap: false,
-        selectable: true,
+        // selectable: true,
         eventConstraint: [
             {
                 start: "11:00",
@@ -80,10 +81,13 @@ $(document).ready(function () {
                 let horainicial = hora + ":" + min;
                 fecha_start.value = check;
                 let mint = 15;
-                fecha_end.value = moment(check).add(mint,'m').format('YYYY-MM-DDThh:mm:ss');
+                fecha_end.value = moment(check).add(mint, 'm').format('YYYY-MM-DDThh:mm:ss');
             } else {
                 alert("No se pueden crear eventos en el pasado.");
             }
+        },
+        select: function (startDate, endDate) {
+            alert(`Seleccionó de ${startDate.format()} a ${endDate.format()}`)
         },
         //click en cita asignada
         eventClick: function (calEvent, jsEvent, view) {
@@ -102,6 +106,13 @@ $(document).ready(function () {
                 })
                 .catch((error) => { });
         },
+        eventDrop: function (ev, delta, revertFunc) {
+            //Aquí verifico que no esté seleccionado el botón "Month"
+            if (!$('.fc-month-button').hasClass('fc-state-active')) {
+                //revierto la operación, esta función no hay que declararla es el 3er parámetro pasado al evento drop
+                revertFunc(event);
+            }
+        }
     });
     // Guardar datos
     document.getElementById("btnGuardar").addEventListener("click", () => {

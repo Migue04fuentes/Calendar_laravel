@@ -16,8 +16,8 @@
 
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel='stylesheet' type='text/css' href='{{ asset('css/fullcalendar.min.css') }}' />
-    <link rel='stylesheet' type='text/css' href='{{ asset('css/fullcalendar.css') }}' />
+    <link rel='stylesheet' type='text/css' href='{{ asset("css/fullcalendar.min.css") }}' />
+    <link rel='stylesheet' type='text/css' href='{{ asset("css/fullcalendar.css") }}' />
     <!-- Scripts -->
     <script type="text/javascript">
         var baseURL = {!! json_encode(url('/')) !!}
