@@ -41,12 +41,26 @@ class EventoController extends Controller
         $doctor  = $request->{'id_doctor'};
         $start  = $request->{'start'};
         $sql = DB::select("select id,cupos from turnos where id_doctor=? and ? between start and end",[$doctor,$start]);
-        // $buscar = DB::select($sql);
         
         if($sql){
-            return response()->json($sql);
+            $cupos;
+            $id;
+            foreach ($sql as $key) {
+                $cupos = $key->cupos;
+                $id = $key->id;
+            }
+            $sqldos = DB::select("select count(id_doctor) as cupos from eventos where id_doctor=?",[$id]);
+            foreach($sqldos as $key){
+                $cupos2 = $key->cupos;
+            }
+            if($cupos == $cupos2){
+                return response(1);
+            }else{
+                $evento = Evento::create($request->all());
+                return response(2);
+            }
         }else{
-            echo 'Not null';
+            return response(3);
         }
         /* foreach ($sql as $user) {
             if($user->cupos == 4){

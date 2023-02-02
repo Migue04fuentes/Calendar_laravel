@@ -1,5 +1,3 @@
-
-
 function addZero(i) {
     if (i < 10) {
         i = "0" + i;
@@ -128,14 +126,28 @@ $(document).ready(function () {
     function enviarDatos(url) {
         const newurl = baseURL + url;
         const datos = new FormData(formulario);
-        console.log(formulario.id_doctor.value);
 
         axios
             .post(newurl, datos)
             .then((respuesta) => {
                 $("#calendar").fullCalendar("refetchEvents");
                 $("#evento").modal("hide");
-                console.log(respuesta);
+                switch (respuesta.data) {
+                    case 1:
+                        console.log(respuesta.data);
+                        successAlert('error','Cupos agotados.');
+                        break;
+                    case 2:
+                        console.log(respuesta.data);
+                        successAlert('success','Su cita ha sido agendada.');
+                        break;
+                    case 3:
+                        console.log(respuesta.data);
+                        successAlert('error','No hay turnos disponibles para este horario.');
+                        break;
+                    default:
+                        break;
+                }
             })
             .catch((error) => {
                 if (error.response) {
@@ -148,3 +160,23 @@ $(document).on("click", ".close", () => {
     $("#evento").modal("hide");
     $("#modal-event").modal("hide");
 });
+
+
+function successAlert(icon,title){
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      });
+    Toast.fire({
+        icon,
+        title
+      })
+}
+
