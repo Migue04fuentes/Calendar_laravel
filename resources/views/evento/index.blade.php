@@ -19,12 +19,12 @@
                     <form action="/newcita" method="post">
                         {!! csrf_field() !!}
                         <div class="row g-3">
-                            <div class="form-group col-auto">
+                            <div class="form-group col-md-6">
                                 <label for="start">Fecha:</label>
                                 <input type="datetime-local" class="form-control col-md-10" name="start" id="start"
                                     placeholder="Fecha">
                             </div>
-                            <div class="form-group col-auto">
+                            <div class="form-group col-md-6">
                                 <label for="end">Fecha-end:</label>
                                 <input type="datetime-local" class="form-control col-md-10" name="end" id="end"
                                     placeholder="Fecha">
@@ -35,15 +35,17 @@
                             <input type="text" class="form-control col-sm-8" name="id_doctor" id="id_doctor"
                                 value="1" placeholder="Doctor">
                         </div>
-                        <div class="form-group">
-                            <label for="title" class="col-form-label">Doctor:</label>
-                            <input type="text" class="form-control col-sm-8" name="title" id="title" required=""
-                                placeholder="Doctor">
-                        </div>
-                        <div class="form-group">
-                            <label for="description" class="col-form-label">Especialidad:</label>
-                            <input type="text" class="form-control col-sm-8" name="description" id="description"
-                                required="" placeholder="Especialidad">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="title" class="col-form-label">Doctor:</label>
+                                <input type="text" class="form-control col-sm-8" name="title" id="title" required=""
+                                    placeholder="Doctor">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="description" class="col-form-label">Especialidad:</label>
+                                <input type="text" class="form-control col-sm-8" name="description" id="description"
+                                    required="" placeholder="Especialidad">
+                            </div>
                         </div>
                     </form>
                 </div>

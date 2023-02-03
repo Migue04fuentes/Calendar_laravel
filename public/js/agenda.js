@@ -62,6 +62,9 @@ $(document).ready(function () {
             var check = date.format();
             var today = moment(new Date()).format();
             if (check >= today) {
+                $('#btnGuardar').show();
+                $('#btnEditar').hide();
+                $('#btnDelete').hide();
                 $("#evento").modal("show");
 
                 //Fecha
@@ -81,7 +84,7 @@ $(document).ready(function () {
                 let mint = 15;
                 fecha_end.value = moment(check).add(mint, 'm').format('YYYY-MM-DDThh:mm:ss');
             } else {
-                alert("No se pueden crear eventos en el pasado.");
+                alertCenter('error','¡No se pueden agendar citas en fechas pasadas!');
             }
         },
         select: function (startDate, endDate) {
@@ -97,9 +100,12 @@ $(document).ready(function () {
                 .then((respuesta) => {
                     formulario.title.value = respuesta.data.title;
                     formulario.description.value = respuesta.data.description;
-                    formulario.start.value = respuesta.data.start;
-                    formulario.end.value = respuesta.data.end;
+                    formulario.start.value = calEvent.start.format();
+                    formulario.end.value = calEvent.end.format();
                     id = respuesta.data.id;
+                    $('#btnGuardar').hide();
+                    $('#btnEditar').show();
+                    $('#btnDelete').show();
                     $("#evento").modal("show");
                 })
                 .catch((error) => { });
@@ -167,7 +173,7 @@ function successAlert(icon,title){
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 3000,
+        timer: 2500,
         timerProgressBar: true,
         didOpen: (toast) => {
           toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -177,6 +183,15 @@ function successAlert(icon,title){
     Toast.fire({
         icon,
         title
-      })
+      });
 }
 
+function alertCenter(icon, title){
+    Swal.fire({
+        position: 'top-center',
+        icon,
+        title,
+        showConfirmButton: false,
+        timer: 1500
+      })
+}
