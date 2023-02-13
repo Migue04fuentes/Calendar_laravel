@@ -90,7 +90,6 @@
         <script type='text/javascript' src='{{ asset('js/full_calendar/fullcalendar.min.js') }}'></script>
         <script type='text/javascript' src='{{ asset('js/full_calendar/es.js') }}'></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="{{ asset('js/agenda.js') }}"></script>
         <main class="py-4">
             @yield('content')
         </main>

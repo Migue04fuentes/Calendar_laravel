@@ -19,12 +19,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// Ruta de apartar cita;
 Route::get('/evento', [App\Http\Controllers\EventoController::class, 'index']);
 Route::get('/evento/mostrar', [App\Http\Controllers\EventoController::class, 'show']);
 Route::post('/evento/agregar', [App\Http\Controllers\EventoController::class, 'store']);
 Route::post('/evento/editar/{id}', [App\Http\Controllers\EventoController::class, 'edit']);
 Route::post('/evento/update/{evento}', [App\Http\Controllers\EventoController::class, 'update']);
 Route::post('/evento/delete/{id}', [App\Http\Controllers\EventoController::class, 'destroy']);
+
+
+//Rutas de agendamiento de turnos.
+Route::get('/turnos', [App\Http\Controllers\TurnosController::class, 'index']);
+Route::get('/turnos/mostrar', [App\Http\Controllers\TurnosController::class, 'show']);
+Route::post('/turnos/agregar', [App\Http\Controllers\TurnosController::class, 'store']);
 
 
 

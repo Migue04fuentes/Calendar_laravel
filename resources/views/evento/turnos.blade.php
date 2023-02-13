@@ -1,12 +1,14 @@
 @extends('layouts.app')
 <style>
+    body{
+        background: #efefef;
+    }
 </style>
 @section('content')
     <div class="container">
         <div id="calendar"></div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="evento" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal fade" id="modal_turnos" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -20,31 +22,31 @@
                         {!! csrf_field() !!}
                         <div class="row g-3">
                             <div class="form-group col-md-6">
-                                <label for="start">Fecha:</label>
-                                <input type="datetime-local" class="form-control col-md-10" name="start" id="start"
+                                <label for="start">Hora Inicio:</label>
+                                <input type="datetime-local" class="form-control col-md-10" name="start" id="start_turnos"
                                     placeholder="Fecha">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="end">Fecha-end:</label>
-                                <input type="datetime-local" class="form-control col-md-10" name="end" id="end"
+                                <label for="end">Hora Final:</label>
+                                <input type="datetime-local" class="form-control col-md-10" name="end" id="end_turnos"
                                     placeholder="Fecha">
                             </div>
                         </div>
                         <div class="form-group" hidden>
-                            <label for="id_doctor" class="col-form-label">Doctor:</label>
+                            <label for="id_doctor" class="col-form-label">Cupos:</label>
                             <input type="text" class="form-control col-sm-8" name="id_doctor" id="id_doctor"
                                 value="1" placeholder="Doctor">
                         </div>
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label for="title" class="col-form-label">Doctor:</label>
-                                <input type="text" class="form-control col-sm-8" name="title" id="title" required=""
-                                    placeholder="Doctor">
+                                <label for="title" class="col-form-label">Cupos:</label>
+                                <input type="text" class="form-control col-sm-8" name="cupos" id="cupos_turnos" required=""
+                                    placeholder="Cupos">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="description" class="col-form-label">Especialidad:</label>
-                                <input type="text" class="form-control col-sm-8" name="description" id="description"
-                                    required="" placeholder="Especialidad">
+                                <label for="description" class="col-form-label">Intervalos:</label>
+                                <input type="text" class="form-control col-sm-8" name="intvervalos" id="intv_turnos"
+                                    required="" placeholder="Cupos">
                             </div>
                         </div>
                     </form>
@@ -59,4 +61,4 @@
     </div>
 @endsection
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script src="{{ asset('js/agenda.js') }}" ></script>
+<script src="{{ asset('js/turnos.js') }}" ></script>

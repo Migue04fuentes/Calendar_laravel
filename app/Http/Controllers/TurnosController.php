@@ -14,7 +14,7 @@ class TurnosController extends Controller
      */
     public function index()
     {
-        //
+        return view('evento.turnos');
     }
 
     /**
@@ -35,7 +35,15 @@ class TurnosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate(Turnos::$rules);
+        $doctor = $request->{'id_doctor'};
+        $start = $request->{'start'};
+        $end = $request->{'end'};
+        $cupos = $request->{'cupos'};
+        $interv = $request->{'intervalos'};
+
+        $turnos = Turnos::create($request->all());
+        return response()->json($turnos);
     }
 
     /**
