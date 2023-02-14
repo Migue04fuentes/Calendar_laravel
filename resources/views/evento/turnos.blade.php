@@ -45,7 +45,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="description" class="col-form-label">Intervalos:</label>
-                                <input type="text" class="form-control col-sm-8" name="intvervalos" id="intv_turnos"
+                                <input type="text" class="form-control col-sm-8" name="intervalos" id="intv_turnos"
                                     required="" placeholder="Cupos">
                             </div>
                         </div>

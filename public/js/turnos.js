@@ -1,3 +1,4 @@
+
 function addZero(i) {
     if (i < 10) {
         i = "0" + i;
@@ -23,12 +24,21 @@ var yyyy = hoy.getFullYear();
 dd = addZero(dd);
 mm = addZero(mm);
 var id;
+
+
+
 $(document).ready(function () {
+
+
     // VARIABLES
     let fecha_start = document.getElementById('start');
     let fecha_end = document.getElementById('end');
     let formulario = document.querySelector("form");
+    
+    loadTurnos();
+
     $("#calendar").fullCalendar({
+
         header: {
             left: "prev,next",
             center: "title",
@@ -39,7 +49,7 @@ $(document).ready(function () {
         weekNumbers: false,
         editable: true,
         eventLimit: true, // allow "mo,re" link when too many events
-        // events: "http://localhost/agenda/public/evento/mostrar",
+        events: "http://localhost/agenda/public/turnos/mostrar",
         minTime: "06:00:00",
         maxTime: "18:00:00",
         slotDuration: "00:15:00",
@@ -55,8 +65,6 @@ $(document).ready(function () {
                 end: "12:00"
             }
         ],
-
-        
         select: function (startDate, endDate) {
             $('#modal_turnos').modal('show');
             $('#start_turnos').val(startDate.format());
@@ -70,7 +78,7 @@ $(document).ready(function () {
                     calEvent.id
                 )
                 .then((respuesta) => {
-                    
+
                 })
                 .catch((error) => { });
         },
@@ -102,7 +110,9 @@ $(document).ready(function () {
             .then((respuesta) => {
                 $("#calendar").fullCalendar("refetchEvents");
                 $("#modal_turnos").modal("hide");
-                console.log(respuesta.data)
+                if(respuesta.data == 1){
+                    successAlert('success','Turno Creado Exitosamente');
+                }
             })
             .catch((error) => {
                 if (error.response) {
@@ -110,6 +120,25 @@ $(document).ready(function () {
                 }
             });
     }
+
+    function loadTurnos() {
+        axios
+            .get(
+                "http://localhost/agenda/public/turnos/mostrar",
+                {
+                    responseType: 'json'
+                }
+            )
+            .then((response) => {
+                /* turnos_event = response.data.map(item => {
+                    return { title: item.cupos, description: item.intervalos, start: item.start, end: item.end };
+                }); */
+                console.log(response);
+            })
+            .catch((error) => { console.log(error) });
+    }
+
+
 });
 
 // Cerrar modales
@@ -119,7 +148,7 @@ $(document).on("click", ".close", () => {
 });
 
 
-function successAlert(icon,title){
+function successAlert(icon, title) {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -127,22 +156,22 @@ function successAlert(icon,title){
         timer: 2500,
         timerProgressBar: true,
         didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
-      });
+    });
     Toast.fire({
         icon,
         title
-      });
+    });
 }
 
-function alertCenter(icon, title){
+function alertCenter(icon, title) {
     Swal.fire({
         position: 'top-center',
         icon,
         title,
         showConfirmButton: false,
         timer: 1500
-      })
+    })
 }

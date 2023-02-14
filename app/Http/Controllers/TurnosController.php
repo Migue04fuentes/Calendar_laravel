@@ -36,14 +36,9 @@ class TurnosController extends Controller
     public function store(Request $request)
     {
         request()->validate(Turnos::$rules);
-        $doctor = $request->{'id_doctor'};
-        $start = $request->{'start'};
-        $end = $request->{'end'};
-        $cupos = $request->{'cupos'};
-        $interv = $request->{'intervalos'};
-
+        
         $turnos = Turnos::create($request->all());
-        return response()->json($turnos);
+        return response(1);
     }
 
     /**
@@ -54,7 +49,21 @@ class TurnosController extends Controller
      */
     public function show(Turnos $turnos)
     {
-        //
+        $turnos = Turnos::all();
+        $new_turnos = [];
+        $title ="";
+        $description = "";
+        $start = "";
+        $end = "";
+        foreach ($turnos as $claves) {
+            $obj = new class{};
+            $obj->title = $claves->cupos;
+            $obj->description = $claves->intervalos;
+            $obj->start = $claves->start;
+            $obj->end = $claves->end; 
+            array_push($new_turnos, $obj);
+        }
+        return response()->json($new_turnos);
     }
 
     /**

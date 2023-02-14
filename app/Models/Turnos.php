@@ -11,7 +11,7 @@ class Turnos extends Model
 
     static $rules = [
         'start'=>'required',
-        'ends'=>'required',
+        'end'=>'required',
         'id_doctor'=>'required',
         'cupos'=>'required',
         'intervalos'=>'required'
